@@ -34,17 +34,19 @@ img {
 (track: &#39;Elpis-SchizoMusic4&#39;, &#39;play&#39;)
 You are sitting in a Comfortable couch watching TV. On the right there is a window, on the left is a drawer with some pictures on it. In front of you there is a small coffee table with TV, phone and an alarm clock on it.
 (set: $AlarmRinging to true, $WentToDresser to false, $TakeMedication to false, $TookMedicine to false, $NeighbourNote to false)
-[[Stand up and look around-&gt;In the middle of the living room]]</tw-passagedata><tw-passagedata pid="2" name="go to drawer" tags="" position="262,335" size="100,100">&lt;img src=&quot;images/dresser.png&quot;/&gt;
+[[Stand up and look around-&gt;In the middle of the living room]]</tw-passagedata><tw-passagedata pid="2" name="go to drawer" tags="" position="250,325" size="100,100">&lt;img src=&quot;images/dresser.png&quot;/&gt;
 You see a dresser with 3 pictures in front of you. There are 2 drawers in the dresser.
 (set: $WentToDresser to true)
 [[Look at the pictures]]
 [[Open drawers]]
 
-[[Return-&gt;In the middle of the living room]]</tw-passagedata><tw-passagedata pid="3" name="look through the window" tags="" position="1300,300" size="100,100">&lt;img src=&quot;images/ElpisStreet.png&quot;/&gt;
+[[Return-&gt;In the middle of the living room]]</tw-passagedata><tw-passagedata pid="3" name="look through the window" tags="" position="1300,300" size="100,100">(track: &#39;Elpis-SchizoMusic4&#39;, &#39;stop&#39;)
+&lt;img src=&quot;images/ElpisStreet.png&quot;/&gt;
 You watch the street through the window. Its a cold day and the street seems empty.
 
 (if:$TookMedication is true)[ [[You hear a something and you stare at the street-&gt;watch old man fall with medication]] ]
-(else:)[  [[You hear a menacing sound from the street-&gt;watch old man fall without medication]]  ]</tw-passagedata><tw-passagedata pid="4" name="Look at the pictures" tags="" position="187,486" size="100,100">There are 3 pictures;
+(else:)[  [[You hear a menacing sound from the street-&gt;watch old man fall without medication]]  ]
+(track: &#39;Elpis-streetMusic1&#39;, &#39;play&#39;)</tw-passagedata><tw-passagedata pid="4" name="Look at the pictures" tags="" position="187,486" size="100,100">There are 3 pictures;
 * An old man holding a dog. [[Flip Neighbour Picture]]
 * A dog. [[Flip Dog Picture]]
 * A hallmark card.  [[Flip card]]
@@ -63,25 +65,28 @@ In the back there is a hand written note saying - &quot;See? I&#39;m not alone a
 
 [[Put back the picture-&gt;Look at the pictures]] </tw-passagedata><tw-passagedata pid="8" name="Flip card" tags="" position="337,636" size="100,100">The hallmark card has a printed note - &quot;Good bye Elpis and take care, Schizo Mental Dep.&quot;
 
-[[Put back the picture-&gt;Look at the pictures]] </tw-passagedata><tw-passagedata pid="9" name="Open bottom drawer" tags="" position="457,636" size="100,100">You open the bottom drawer and inside it there is a note and medications.
+[[Put back the picture-&gt;Look at the pictures]] </tw-passagedata><tw-passagedata pid="9" name="Open bottom drawer" tags="" position="450,625" size="100,100">You open the bottom drawer and inside it there is a note and medications.
 
 [[Examine the note]]
 [[Examine medication]]
 
-[[Close drawer-&gt;Open drawers]] </tw-passagedata><tw-passagedata pid="10" name="Examine the note" tags="" position="382,786" size="100,100">&lt;img src=&quot;images/medNote.png&quot;/&gt;
+[[Close drawer-&gt;Open drawers]]
+(track: &#39;Drawer_Open&#39;, &#39;play&#39;)</tw-passagedata><tw-passagedata pid="10" name="Examine the note" tags="" position="382,786" size="100,100">&lt;img src=&quot;images/medNote.png&quot;/&gt;
 The note is from a doctor advising to take the medication every day at 8am and at 5pm.
 (set: $TakeMedication to true)
 
-[[Return-&gt;Open bottom drawer]] </tw-passagedata><tw-passagedata pid="11" name="Examine medication" tags="" position="532,786" size="100,100">&lt;img src=&quot;images/pillsContainer.png&quot;/&gt;
+[[Return-&gt;Open bottom drawer]] </tw-passagedata><tw-passagedata pid="11" name="Examine medication" tags="" position="525,775" size="100,100">&lt;img src=&quot;images/pillsContainer.png&quot;/&gt;
 The medication is &quot;Olanzapine&quot;, an antipsychotics medication. It is labelled for Elpis and meant to take daily.
 
-[[Return-&gt;Open bottom drawer]] </tw-passagedata><tw-passagedata pid="12" name="take keys" tags="" position="711.3333333333334,638.6666666666667" size="100,100">&lt;img src=&quot;images/doorKey.png&quot;/&gt;
+[[Return-&gt;Open bottom drawer]]
+(track: &#39;Medicine_Open&#39;, &#39;play&#39;)</tw-passagedata><tw-passagedata pid="12" name="take keys" tags="" position="711.3333333333334,638.6666666666667" size="100,100">&lt;img src=&quot;images/doorKey.png&quot;/&gt;
 You took the key(set: $TakeKeys to true)
 
 [[Return-&gt;Open top drawer]] </tw-passagedata><tw-passagedata pid="13" name="In the middle of the living room" tags="" position="975,100" size="100,100">&lt;img src=&quot;images/room.png&quot;/&gt;
 You are standing in your living room and looking around. On the right there is a window, on the left is a dresser with some pictures on it. In front of you there is a small coffee table with TV, phone and an alarm clock on it.
 (set: $timeForAlarm to $WentToDresser and $AlarmRinging)
-$timeForAlarm[ [[Alarm clock is ringing-&gt;go to alarm clock]] ]
+(if:$timeForAlarm is true)[ (track: &#39;AlarmClock_Ringing_Psychosis&#39;, &#39;play&#39;) [[Alarm clock is ringing-&gt;go to alarm clock]] ]
+(else:)[ (track: &#39;AlarmClock_Ticking&#39;, &#39;play&#39;) ]
 [[go to drawer]] 
 [[Sit down on the couch]] </tw-passagedata><tw-passagedata pid="14" name="Take medication" tags="" position="850,475" size="100,100">&lt;img src=&quot;images/pillsContainer.png&quot;/&gt;
 You open the bottom drawer in the dresser and take a pill from the plastic container.
@@ -89,51 +94,63 @@ You open the bottom drawer in the dresser and take a pill from the plastic conta
 The pill slides through your throat and rests in a small pool of water in you tummy. You know the drill and side effects, but it&#39;s better than having  a full fledge psychotic episode.
 
 (set: $TookMedicine to true)
-[[Sit down on the couch]]</tw-passagedata><tw-passagedata pid="15" name="Sit down on the couch" tags="" position="1100,300" size="100,100">&lt;img src=&quot;images/ElpisSitting.png&quot;/&gt;
+[[Sit down on the couch]]
+(track: &#39;Medicine_Take&#39;, &#39;play&#39;)</tw-passagedata><tw-passagedata pid="15" name="Sit down on the couch" tags="" position="1100,300" size="100,100">&lt;img src=&quot;images/ElpisSitting.png&quot;/&gt;
 You sitting down the comfortable couch.
 
 [[look through the window]]
-[[watch TV]]</tw-passagedata><tw-passagedata pid="16" name="go to alarm clock" tags="" position="900,278.33333333333337" size="100,100">&lt;img src=&quot;images/alarmClock.png&quot;/&gt;
+[[watch TV]]</tw-passagedata><tw-passagedata pid="16" name="go to alarm clock" tags="" position="900,275" size="100,100">&lt;img src=&quot;images/alarmClock.png&quot;/&gt;
 The ringing alarm clock shows that it&#39;s 5pm. You stop the annoying ringing.
 $TakeMedication[You set the alarm to 8am as a reminder to take the pills.]
 (if:$TakeMedication is false)[The ringing continues in your head and voices are getting louder.]
 
 $TakeMedication[ [[Take medication]] ]
-[[Sit down on the couch]] </tw-passagedata><tw-passagedata pid="17" name="watch TV" tags="" position="1100,500" size="100,100">&lt;img src=&quot;images/TV.png&quot;/&gt;
+[[Sit down on the couch]]
+(track: &#39;AlarmClock_Ringing_Psychosis&#39;, &#39;play&#39;)</tw-passagedata><tw-passagedata pid="17" name="watch TV" tags="" position="1100,500" size="100,100">(track: &#39;Elpis-SchizoMusic4&#39;, &#39;loop&#39;, false)
+(track: &#39;Elpis-SchizoMusic4&#39;, &#39;stop&#39;)
+&lt;img src=&quot;images/TV.png&quot;/&gt;
 (if:visits is 0)[The TV is on and the antenna setting gives an ok reception. A kid&#39;s show is playing. You stare aimlessly at the TV.]
 (if:visits is 1)[You are watching Kishkashta, no point to the character.]
 (if:visits is 2)[You are watching Delet HaKsamim, but your prefer to keep the door shut]
 (if:visits &gt;= 3)[You are reminded that watching TV is bad for you.]
 
 [[watch TV]]
-[[look through the window]] </tw-passagedata><tw-passagedata pid="18" name="Open top drawer" tags="" position="536.6666666666667,510.00000000000006" size="100,100">&lt;img src=&quot;images/doorKey.png&quot;/&gt;
+[[look through the window]]
+(track: &#39;TV_80s_Shows&#39;, &#39;play&#39;)</tw-passagedata><tw-passagedata pid="18" name="Open top drawer" tags="" position="525,500" size="100,100">&lt;img src=&quot;images/doorKey.png&quot;/&gt;
 You open the top drawer and inside it there is a your front door keys
 (set: $TakeKeys to true)
 
-[[Take the key-&gt;Open drawers]] </tw-passagedata><tw-passagedata pid="19" name="watch news" tags="" position="1700,250" size="100,100">&lt;img src=&quot;images/TV.png&quot;/&gt;
+[[Take the key-&gt;Open drawers]]
+(track: &#39;Drawer_Open&#39;, &#39;play&#39;)</tw-passagedata><tw-passagedata pid="19" name="watch news" tags="" position="1700,250" size="100,100">(track: &#39;TV_News_Flash&#39;, &#39;play&#39;)
+&lt;img src=&quot;images/TV.png&quot;/&gt;
 You sit a while watching TV and suddenly they burst with breaking news. A dead person was found and his dog still roams it&#39;s neighbourhood.
 
-Sound of howls fill the street and seems to get closer and louder.</tw-passagedata><tw-passagedata pid="20" name="call for defibrillator" tags="" position="1700,125" size="100,100">&lt;img src=&quot;images/phone.png&quot;/&gt;
+Sound of howls fill the street and seems to get closer and louder.</tw-passagedata><tw-passagedata pid="20" name="call for defibrillator" tags="" position="1700,125" size="100,100">(track: &#39;Phone_Dailing&#39;, &#39;play&#39;)
+&lt;img src=&quot;images/phone.png&quot;/&gt;
 There are few ambulances with defibrillator, luckily you managed to call one. The person seems to be OK and to be pointing at your house.
 
-A medic take the dog&#39;s leash and crosses the street toward your house.</tw-passagedata><tw-passagedata pid="21" name="call for ambulance" tags="" position="1700,375" size="100,100">&lt;img src=&quot;images/phone.png&quot;/&gt;
+A medic take the dog&#39;s leash and crosses the street toward your house.</tw-passagedata><tw-passagedata pid="21" name="call for ambulance" tags="" position="1700,375" size="100,100">(track: &#39;Phone_Dailing&#39;, &#39;play&#39;)
+&lt;img src=&quot;images/phone.png&quot;/&gt;
 You call for an ambulance and they arrived quickl. Unfortubately the old man suffered an heart-attack and they did not have defibrillator installed so he is now in ER in critical condition.
 
-Sound of howls fill the street and seems to get closer and louder.</tw-passagedata><tw-passagedata pid="22" name="watch old man fall with medication" tags="" position="1500,150" size="100,100">You hear something. There is a commotion in the street you look intensely though the windows.
+Sound of howls fill the street and seems to get closer and louder.</tw-passagedata><tw-passagedata pid="22" name="watch old man fall with medication" tags="" position="1500,150" size="100,100">(track: &#39;Elpis-SchizoMusic2&#39;, &#39;play&#39;)
+You hear something. There is a commotion in the street you look intensely though the windows.
 &lt;img src=&quot;images/oldManDog.png&quot;/&gt;
 You see an old man silhouette walking erratically and falling. Next to the fallen, a creature begins to frantically bark.
 You frighteningly stare at the window and continue to gaze.
 (if: $NeighbourNote is true) [ [[there is something oddly familiar with this old man, could it be my neighbour having another heartattack?-&gt;call for defibrillator]] ]
 (else:)[ [[there is a person in need. you can call an ambulance-&gt;call for ambulance]] ]
 
-[[Unsure if this is a concern or a threat, you can safely watch TV-&gt;watch news]]</tw-passagedata><tw-passagedata pid="23" name="watch old man fall without medication" tags="" position="1500,350" size="100,100">You hear something. There is a commotion in the street you look intensely though the windows.
+[[Unsure if this is a concern or a threat, you can safely watch TV-&gt;watch news]]</tw-passagedata><tw-passagedata pid="23" name="watch old man fall without medication" tags="" position="1500,350" size="100,100">(track: &#39;Elpis-SchizoMusic2&#39;, &#39;play&#39;)
+You hear something. There is a commotion in the street you look intensely though the windows.
 &lt;img src=&quot;images/oldManDogPsy.png&quot;/&gt;
 An evil looking demon is walking erratically, suddenly falls and lies ominously down. A four legged creature begins to hungrily howl.
 
 (if: $NeighbourNote is true)[ [[this demon echos a memory. could it be that you are having an episode? better call an ambulance and let them deal with it-&gt;call for ambulance]] ]
-(else:)[ [[there is danger and you are frightened, you need to call the poslice-&gt;call the police]] ]
+(else:)[ [[there is danger and you are frightened, you need to call the police-&gt;call the police]] ]
 
-[[Unsure if this is a concern or a threat, you can safely watch TV-&gt;watch news]]</tw-passagedata><tw-passagedata pid="24" name="call the police" tags="" position="1700,500" size="100,100">The Police arrives shortly, you hear a gunshot that follows with the creatures cry and then a thump and silence. The creature is dead. The police call an ambulance to remove the demon&#39;s body.
+[[Unsure if this is a concern or a threat, you can safely watch TV-&gt;watch news]]</tw-passagedata><tw-passagedata pid="24" name="call the police" tags="" position="1700,500" size="100,100">(track: &#39;Phone_Dailing&#39;, &#39;play&#39;)
+The Police arrives shortly, you hear a gunshot that follows with the creatures cry and then a thump and silence. The creature is dead. The police call an ambulance to remove the demon&#39;s body.
 
 You are safe.
 
@@ -148,8 +165,10 @@ Enjoy.
 [[Begin Story]]
 
 {
+(track: &#39;Elpis-streetMusic1&#39;, &#39;loop&#39;, false)
+(track: &#39;Elpis-SchizoMusic2&#39;, &#39;loop&#39;, false)
+(track: &#39;Elpis-SchizoMusic3&#39;, &#39;loop&#39;, false)
 (track: &#39;Elpis-SchizoMusic4&#39;, &#39;loop&#39;, true)
-(track: &#39;Elpis-SchizoMusic4&#39;, &#39;playwhenpossible&#39;)
 }</tw-passagedata><tw-passagedata pid="26" name="hal.tracks" tags="" position="100,225" size="100,100">AlarmClock_Ringing_Psychosis: ./sound/AlarmClock_Ringing_Psychosis.mp3
 AlarmClock_Ticking: ./sound/AlarmClock_Ticking.mp3
 Dog_Hawling_Outside: ./sound/Dog_Hawling_Outside.mp3
